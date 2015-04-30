@@ -35,6 +35,7 @@
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
 @property (strong, readwrite, nonatomic) NSMutableArray *backgroundViews;
 @property (strong, readwrite, nonatomic) UIView *containerView;
+@property (strong, readwrite, nonatomic) UIView *statusBarView;
 @property (assign, readwrite, nonatomic) CGPoint containerOrigin;
 
 @end
@@ -51,6 +52,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //add status bar view - Test
+    NSMutableDictionary *viewsDictionary = [[NSMutableDictionary alloc] init];
+    
+    
+    UIWindow* mainWindow = [[UIApplication sharedApplication] keyWindow];
+    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width, 20)];
+    self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
+    
+    [viewsDictionary setObject:self.statusBarView forKey:@"statusBarView"];
+    [mainWindow addSubview:self.statusBarView];
+    
+    NSString *horizontalConstraintVisual = [NSString stringWithFormat:@"H:|-0-[statusBarView]-0-|"];
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraintVisual
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:viewsDictionary];
+    [mainWindow addConstraints:horizontalConstraints];
+
+    [mainWindow addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[statusBarView(==20)]"
+                                                                   options:0
+                                                                   metrics:nil
+                                                                     views:viewsDictionary]];
+
+    //add status bar view - Test
+
     self.backgroundViews = [NSMutableArray array];
     for (NSInteger i = 0; i < 4; i++) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
@@ -185,6 +212,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         } completion:completionHandler];
     }
     
@@ -192,6 +220,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         } completion:completionHandler];
     }
     
@@ -199,6 +228,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         } completion:completionHandler];
     }
     
@@ -206,6 +236,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
         } completion:completionHandler];
     }
 }
@@ -234,6 +265,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -245,6 +277,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -256,6 +289,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -267,6 +301,7 @@
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
+            self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -358,6 +393,8 @@
             }
         }
         
+        NSLog(@"%f", frame.origin.x);
+        self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:(frame.origin.x + self.frostedViewController.calculatedMenuViewSize.width)/self.frostedViewController.calculatedMenuViewSize.width];
         [self setContainerFrame:frame];
     }
     
