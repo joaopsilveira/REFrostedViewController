@@ -4,8 +4,7 @@ Pod::Spec.new do |s|
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/joaopsilveira/REFrostedViewController'
   s.summary     = 'iOS 7 style blurred view controller that appears on top of your view controller.'
-  s.source      = { :git => 'https://github.com/joaopsilveira/REFrostedViewController.git',
-                    :tag => s.version.to_s }
+  s.source      = { :git => 'https://github.com/joaopsilveira/REFrostedViewController.git' }
   s.license     = { :type => "MIT", :file => "LICENSE" }
 
   s.platform = :ios, '6.0'
