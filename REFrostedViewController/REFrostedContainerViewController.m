@@ -393,7 +393,6 @@
             }
         }
         
-        NSLog(@"%f", frame.origin.x);
         self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:(frame.origin.x + self.frostedViewController.calculatedMenuViewSize.width)/self.frostedViewController.calculatedMenuViewSize.width];
         [self setContainerFrame:frame];
     }
