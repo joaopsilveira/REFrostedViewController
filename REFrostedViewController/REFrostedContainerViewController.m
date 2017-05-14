@@ -52,33 +52,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //add status bar view - Test
-    NSMutableDictionary *viewsDictionary = [[NSMutableDictionary alloc] init];
-    
-    
-    UIWindow* mainWindow = [[UIApplication sharedApplication] keyWindow];
-    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width, 20)];
-    self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
-    
-    self.statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
-    [viewsDictionary setObject:self.statusBarView forKey:@"statusBarView"];
-    [mainWindow addSubview:self.statusBarView];
-    
-    NSString *horizontalConstraintVisual = [NSString stringWithFormat:@"H:|-0-[statusBarView]-0-|"];
-    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraintVisual
-                                                                             options:0
-                                                                             metrics:nil
-                                                                               views:viewsDictionary];
-    [mainWindow addConstraints:horizontalConstraints];
-
-    [mainWindow addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[statusBarView(==20)]"
-                                                                   options:0
-                                                                   metrics:nil
-                                                                     views:viewsDictionary]];
-
-    //add status bar view - Test
 
     self.backgroundViews = [NSMutableArray array];
     for (NSInteger i = 0; i < 4; i++) {
@@ -112,6 +85,32 @@
         [self.containerView addSubview:self.frostedViewController.menuViewController.view];
         [self.frostedViewController.menuViewController didMoveToParentViewController:self];
     }
+    
+    //add status bar view - Test
+    NSMutableDictionary *viewsDictionary = [[NSMutableDictionary alloc] init];
+    
+    
+    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width, 20)];
+    self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
+    
+    self.statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    [viewsDictionary setObject:self.statusBarView forKey:@"statusBarView"];
+    [self.view addSubview:self.statusBarView];
+    
+    NSString *horizontalConstraintVisual = [NSString stringWithFormat:@"H:|-0-[statusBarView]-0-|"];
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraintVisual
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:viewsDictionary];
+    [self.view addConstraints:horizontalConstraints];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[statusBarView(==20)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:viewsDictionary]];
+    
+    //add status bar view - Test
     
     [self.view addGestureRecognizer:self.frostedViewController.panGestureRecognizer];
 }
