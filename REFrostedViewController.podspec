@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'REFrostedViewController'
-  s.version     = '2.4.9.1'
+  s.version     = '2.4.9.2'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/joaopsilveira/REFrostedViewController'
   s.summary     = 'iOS 7 style blurred view controller that appears on top of your view controller.'
