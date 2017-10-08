@@ -90,7 +90,7 @@
     NSMutableDictionary *viewsDictionary = [[NSMutableDictionary alloc] init];
     
     
-    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width, 20)];
+    self.statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width, [UIApplication sharedApplication].statusBarFrame.size.height)];
     self.statusBarView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.0];
     
     self.statusBarView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
