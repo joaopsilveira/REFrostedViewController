@@ -105,7 +105,8 @@
                                                                                views:viewsDictionary];
     [self.view addConstraints:horizontalConstraints];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[statusBarView(==20)]"
+    NSString *statusBarViewConstraintString = [NSString stringWithFormat:@"V:[statusBarView(==%d)]", (int)[UIApplication sharedApplication].statusBarFrame.size.height];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:statusBarViewConstraintString
                                                                       options:0
                                                                       metrics:nil
                                                                         views:viewsDictionary]];
